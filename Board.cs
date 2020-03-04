@@ -168,6 +168,15 @@ namespace Sudoku
             return legal;
         }
 
+        public bool checkWin() {
+            foreach (Square s in Squares) {
+                if (s.Fixed == false) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
         //Probably going to delete this method, or reuse it in generator 
 
         /*public bool isValueLegal(Square s) {

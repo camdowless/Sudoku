@@ -35,7 +35,7 @@ namespace Sudoku
             //This method is done after generating the solution, which is the whole solved board
 
             List<int> showed_number_indices = new List<int>();
-            for (int i = 0; i < 25; i++) {
+            for (int i = 0; i < 80; i++) {
                 int next = getRandom();
                 do
                 {

@@ -15,10 +15,13 @@ namespace Sudoku
         Board board = new Board();
         public MainWindow()
         {
+            start();
+        }
+        void start()
+        {
             InitializeComponent();
             showBoard();
         }
-
         private void showBoard()
         {
             int[] startBoard = board.getStartBoard();
@@ -95,6 +98,16 @@ namespace Sudoku
                         break;
                 }
             }
+            if (board.checkWin())
+            {
+                Console.WriteLine("Win");
+                MessageBox.Show("You win!", "Fuck you", MessageBoxButton.OK);
+
+                InitializeComponent();
+            }
+            else {
+                Console.WriteLine("No");
+            }
         }
 
         void SetValue(int val) {
@@ -136,7 +149,5 @@ namespace Sudoku
                 Console.WriteLine(s.LabelID + "  " + s.Value);
             }
         }
-
-
     }
 }
