@@ -26,5 +26,13 @@ namespace Sudoku
         public void setBlock(int b) {
             this.Block = b;
         }
+
+        public void setValue(int v) {
+            this.Value = v;
+        }
+
+        public void setFixed(bool f) {
+            this.Fixed = f;
+        }
     }
 }

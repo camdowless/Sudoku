@@ -4,6 +4,8 @@ using System.Windows.Media.Effects;
 using System.Windows.Media;
 using System.Windows.Controls;
 using System;
+using System.Windows.Threading;
+using System.Threading.Tasks;
 
 namespace Sudoku
 {
@@ -11,10 +13,25 @@ namespace Sudoku
     {
         Label selected;
         Board board = new Board();
-
         public MainWindow()
         {
             InitializeComponent();
+            showBoard();
+        }
+
+        private void showBoard()
+        {
+            int[] startBoard = board.getStartBoard();
+            for (int i = 0; i < 80; i++)
+            {
+                if (startBoard[i] != 0)
+                {
+                    Square s = board.GetSquares()[i + 1];
+                    s.Fixed = true;
+                    Label l = (Label)FindName(s.LabelID);
+                    l.Content = s.Value;
+                }
+            }
         }
 
         private new void MouseEnter(object sender, MouseEventArgs e)
@@ -88,13 +105,38 @@ namespace Sudoku
             if(!s.Fixed){
                 s.Value = val;
                 selected.Content = val.ToString();
+                if (!board.isValueLegal(s))
+                {
+                    makeRed();
+                }
+                else {
+                    
+                    _ = makeGreenAsync();
+                    s.Fixed = true;
+                }
             }
         }
+
+         async Task makeGreenAsync() {
+            Brush brush = new SolidColorBrush(Color.FromRgb(29, 255, 21));
+            selected.Background = brush;
+            await Task.Delay(400);
+            selected.Background = new SolidColorBrush(Color.FromRgb(255, 255, 255));
+        }
+
+        void makeRed() {
+            Brush brush = new SolidColorBrush(Color.FromRgb(241, 0, 0));
+            selected.Background = brush;
+        }
+
+        
 
         void printSquares() { 
             foreach(Square s in board.GetSquares()){
                 Console.WriteLine(s.LabelID + "  " + s.Value);
             }
         }
+
+
     }
 }
