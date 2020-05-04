@@ -30,7 +30,7 @@ namespace Sudoku
 
         public void setValues() {
             Generator gen = new Generator();
-            Values = gen.GenerateSolution();
+            Values = gen.Solution;
             int i = 0;
             foreach (Square s in Squares) {
                 s.setValue(Values[i]);
@@ -169,42 +169,35 @@ namespace Sudoku
         }
 
         public bool checkWin() {
-            foreach (Square s in Squares) {
-                if (s.Fixed == false) {
-                    return false;
+            if (isFull())
+            {
+                int index = 0;
+                foreach (Square s in Squares)
+                {
+                    if (s.Value != Values[index])
+                    {
+                        return false;
+                    }
+                    //Console.WriteLine("Square: " + s.Value + "      Value: " + Values[index]);
+                    index++;
                 }
+                return true;
+            }
+            else { 
+                return false;
+            }
+            
+        }
+
+        private bool isFull() {
+            foreach (Square s in Squares)
+            {
+                if (String.IsNullOrEmpty(s.Value.ToString()) ){
+                    return false;
+                }            
             }
             return true;
         }
 
-        //Probably going to delete this method, or reuse it in generator 
-
-        /*public bool isValueLegal(Square s) {
-            bool legal = false;
-             //Gets the square list from the block that Square s is in
-             //The blocks are numbered 1-9, so we have to subtract 1 to get the correct list index
-            foreach (Square current in Blocks[s.Block-1].getSquares()) {
-                if (current.Value == s.Value) {
-                    legal = false;
-                }
-            }
-
-            foreach (Square current in Rows[s.Y - 1].getSquares())
-            {
-                if (current.Value == s.Value)
-                {
-                    legal = false;
-                }
-            }
-
-            foreach (Square current in Columns[s.X - 1].getSquares())
-            {
-                if (current.Value == s.Value)
-                {
-                    legal = false;
-                }
-            }
-            return legal;
-        }*/
     }
 }

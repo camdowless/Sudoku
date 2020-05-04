@@ -98,16 +98,6 @@ namespace Sudoku
                         break;
                 }
             }
-            if (board.checkWin())
-            {
-                Console.WriteLine("Win");
-                MessageBox.Show("You win!", "Fuck you", MessageBoxButton.OK);
-
-                InitializeComponent();
-            }
-            else {
-                Console.WriteLine("No");
-            }
         }
 
         void SetValue(int val) {
@@ -118,28 +108,32 @@ namespace Sudoku
             if(!s.Fixed){
                 s.Value = val;
                 selected.Content = val.ToString();
+
+                /*
                 if (!board.isValueLegal(s))
                 {
-                    makeRed();
+                    _ = makeRed();
                 }
                 else {
                     
                     _ = makeGreenAsync();
                     s.Fixed = true;
-                }
+                }*/
             }
         }
 
-         async Task makeGreenAsync() {
+         async Task makeGreenAsync(Label l) {
             Brush brush = new SolidColorBrush(Color.FromRgb(29, 255, 21));
-            selected.Background = brush;
+            l.Background = brush;
             await Task.Delay(400);
-            selected.Background = new SolidColorBrush(Color.FromRgb(255, 255, 255));
+            l.Background = new SolidColorBrush(Color.FromRgb(255, 255, 255));
         }
 
-        void makeRed() {
+        async Task makeRed(Label l) {
             Brush brush = new SolidColorBrush(Color.FromRgb(241, 0, 0));
-            selected.Background = brush;
+            l.Background = brush;
+            await Task.Delay(400);
+            l.Background = new SolidColorBrush(Color.FromRgb(255, 255, 255));
         }
 
         
@@ -147,6 +141,39 @@ namespace Sudoku
         void printSquares() { 
             foreach(Square s in board.GetSquares()){
                 Console.WriteLine(s.LabelID + "  " + s.Value);
+            }
+        }
+
+        private void Submit(object sender, RoutedEventArgs e)
+        {
+            if (board.checkWin())
+            {
+                Win();
+            }
+            else {
+                Lose();
+            }
+        }
+
+        void Win() {
+            foreach (Control c in BoardCanvas.Children) {
+                if (c is Label) {
+                    _ = makeGreenAsync((Label)c);
+                    _ = makeGreenAsync((Label)c);
+                    _ = makeGreenAsync((Label)c);
+                }
+            }
+        }
+
+        void Lose()
+        {
+            foreach (Control c in BoardCanvas.Children)
+            {
+                if (c is Label)
+                {
+                    _ = makeRed((Label)c);
+                    showBoard();
+                }
             }
         }
     }

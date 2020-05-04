@@ -15,12 +15,14 @@ namespace Sudoku
         public int Value { get; set; }
         public String LabelID { get; }
         public bool Fixed { get; set; }
+        public bool Correct { get; set; }
         public Square(int index, int x, int y) {
             this.Fixed = false;
             this.Index = index;
             this.Y = y;
             this.X = x;
             this.LabelID = "_" + index;
+            this.Correct = false;
         }
 
         public void setBlock(int b) {

@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Sudoku"
         mc:Ignorable="d"
-        Title="Sudoku" Height="712" Width="685" KeyDown="Window_KeyDown">
-    <Canvas HorizontalAlignment="Left" Height="675" Margin="0,0,0,0" VerticalAlignment="Top" Width="675" >
+        Title="Sudoku" Height="712" Width="800" KeyDown="Window_KeyDown">
+    <Canvas Name ="BoardCanvas" HorizontalAlignment="Left" Height="675" Margin="0,0,0,0" VerticalAlignment="Top" Width="675" >
         <Label x:Name="_1"  Uid="1" Margin="0,0,0,0" Content="" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderThickness="1" HorizontalAlignment="Left" VerticalAlignment="Top" Height="75" Width="75" BorderBrush="Black" FontFamily="Comic Sans MS" FontSize="53" MouseEnter="MouseEnter" MouseLeave="MouseLeave">
 
         </Label>
@@ -98,6 +98,7 @@
         <Label x:Name="_79" MouseEnter="MouseEnter" MouseLeave="MouseLeave" Margin="450,600,0,0" Content="" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderThickness="1" HorizontalAlignment="Left" VerticalAlignment="Top" Height="75" Width="75" BorderBrush="Black" RenderTransformOrigin="2.01,0.75" FontFamily="Comic Sans MS" FontSize="53"/>
         <Label x:Name="_80" MouseEnter="MouseEnter" MouseLeave="MouseLeave" Margin="525,600,0,0" Content="" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderThickness="1" HorizontalAlignment="Left" VerticalAlignment="Top" Height="75" Width="75" BorderBrush="Black" RenderTransformOrigin="2.01,0.75" FontFamily="Comic Sans MS" FontSize="53"/>
         <Label x:Name="_81" MouseEnter="MouseEnter" MouseLeave="MouseLeave" Margin="600,600,0,0" Content="" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderThickness="1" HorizontalAlignment="Left" VerticalAlignment="Top" Height="75" Width="75" BorderBrush="Black" RenderTransformOrigin="2.01,0.75" FontFamily="Comic Sans MS" FontSize="53"/>
-        
+        <Button Content="SUBMIT" Canvas.Left="689" Canvas.Top="182" Width="87" Height="230" Click="Submit"/>
+
     </Canvas>
 </Window>
