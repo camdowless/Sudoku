@@ -120,15 +120,6 @@ namespace Sudoku
             return null;
         }
 
-        private Square find(int index) {
-            foreach (Square s in Squares) {
-                if (s.Index == index) {
-                    return s;                
-                }
-            }
-            return null;
-        }
-
         public Square find(String id) {
             foreach (Square s in Squares) {
                 if (s.LabelID.Equals(id)) {
@@ -178,7 +169,6 @@ namespace Sudoku
                     {
                         return false;
                     }
-                    //Console.WriteLine("Square: " + s.Value + "      Value: " + Values[index]);
                     index++;
                 }
                 return true;
