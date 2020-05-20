@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Sudoku
 {
@@ -141,12 +138,14 @@ namespace Sudoku
 
         public int[] GenerateBoard()
         {
+            int numberShowed = 30;
+
             //Returns only the shown numbers at the start of a game.
             //The solution contains all 81 numbers
             //This method is done after generating the solution, which is the whole solved board
 
             List<int> showed_number_indices = new List<int>();
-            for (int i = 0; i < 80; i++) {
+            for (int i = 0; i < numberShowed; i++) {
                 int next = getRandom81();
                 do
                 {
